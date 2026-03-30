@@ -4,6 +4,8 @@ A **multi-class text classification** pipeline that identifies 17 languages from
 
 **Author:** Mohamed Regaya ([HamaRegaya](https://github.com/HamaRegaya))
 
+<img width="1920" height="1656" alt="image" src="https://github.com/user-attachments/assets/cd79427a-518f-4b14-8ac8-5c1e59b3f6e8" />
+
 ## Languages Supported
 
 Arabic, Danish, Dutch, English, French, German, Greek, Hindi, Italian, Kannada, Malayalam, Portuguese, Russian, Spanish, Swedish, Tamil, Turkish
