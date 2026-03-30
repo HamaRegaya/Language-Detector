@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Detector — AI-Powered Language Identification</title>
+    <meta name="description" content="Detect the language of any text using MultinomialNB or Character-level CNN. 17 languages supported.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="glow glow-1"></div>
+    <div class="glow glow-2"></div>
+
+    <main class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon"><i class="fa-solid fa-globe"></i></span>
+                <div>
+                    <h1>Language Detector</h1>
+                    <p class="subtitle">AI-powered identification across 17 languages</p>
+                </div>
+            </div>
+            <div class="status-badge" id="statusBadge">
+                <span class="status-dot"></span>
+                <span id="statusText">Connecting...</span>
+            </div>
+        </header>
+
+        <!-- Model Selector -->
+        <div class="model-selector">
+            <button class="model-btn" data-model="cnn" id="btnCNN">
+                <span class="model-icon"><i class="fa-solid fa-brain"></i></span>
+                <div>
+                    <strong>CharCNN</strong>
+                    <small>Deep Learning · GPU-trained</small>
+                </div>
+            </button>
+            <button class="model-btn active" data-model="nb" id="btnNB">
+                <span class="model-icon"><i class="fa-solid fa-chart-simple"></i></span>
+                <div>
+                    <strong>Naive Bayes</strong>
+                    <small>Classical ML · Fast baseline</small>
+                </div>
+            </button>
+        </div>
+
+        <!-- Input Area -->
+        <div class="input-section">
+            <div class="input-wrapper">
+                <textarea
+                    id="textInput"
+                    placeholder="Type or paste text in any language..."
+                    rows="4"
+                    spellcheck="false"
+                ></textarea>
+                <div class="input-footer">
+                    <span class="char-count" id="charCount">0 / 512 chars</span>
+                    <button class="clear-btn" id="clearBtn" title="Clear">✕</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Examples -->
+        <div class="demos">
+            <span class="demos-label">Try:</span>
+            <button class="demo-btn" data-text="Nature, in the broadest sense, is the natural physical world."><i class="fa-solid fa-language"></i> English</button>
+            <button class="demo-btn" data-text="La nature, au sens le plus large, est le monde physique naturel."><i class="fa-solid fa-language"></i> French</button>
+            <button class="demo-btn" data-text="Die Natur ist in der breitesten Bedeutung die natürliche physische Welt."><i class="fa-solid fa-language"></i> German</button>
+            <button class="demo-btn" data-text="La naturaleza, en el sentido más amplio, es el mundo físico natural."><i class="fa-solid fa-language"></i> Spanish</button>
+            <button class="demo-btn" data-text="Природа в самом широком смысле — это естественный физический мир."><i class="fa-solid fa-language"></i> Russian</button>
+            <button class="demo-btn" data-text="الطبيعة بالمعنى الأوسع هي العالم المادي الطبيعي"><i class="fa-solid fa-language"></i> Arabic</button>
+        </div>
+
+        <!-- Result Section -->
+        <div class="result-section" id="resultSection" style="display: none;">
+            <!-- Main Prediction -->
+            <div class="prediction-card">
+                <div class="prediction-header">
+                    <div class="predicted-lang">
+                        <span class="prediction-label">Detected Language</span>
+                        <span class="prediction-value" id="predictedLang">—</span>
+                    </div>
+                    <div class="prediction-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Confidence</span>
+                            <span class="meta-value" id="confidence">—</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Latency</span>
+                            <span class="meta-value" id="latency">—</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Model</span>
+                            <span class="meta-value" id="modelUsed">—</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="confidence-bar-main">
+                    <div class="confidence-fill" id="confidenceFill"></div>
+                </div>
+            </div>
+
+            <!-- Probability Bars -->
+            <div class="probabilities-card">
+                <h3 class="card-title">Probability Distribution</h3>
+                <div class="prob-bars" id="probBars"></div>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <span>Analyzing text...</span>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built by <strong>Mohamed Regaya</strong> · 
+            <a href="https://github.com/HamaRegaya/Language-Detector" target="_blank">GitHub</a> · 
+            MultinomialNB + CharCNN (PyTorch/CUDA)</p>
+        </footer>
+    </main>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

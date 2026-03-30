@@ -209,3 +209,7 @@ __marimo__/
 # Generated artifacts
 *.png
 *_executed.ipynb
+train_log.txt
+
+# TensorBoard logs
+runs/
